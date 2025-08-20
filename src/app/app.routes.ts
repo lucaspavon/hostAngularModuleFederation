@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { loadRemoteModule } from '@angular-architects/module-federation-runtime';
+import { AuthGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -17,7 +18,17 @@ export const routes: Routes = [
       loadRemoteModule({
         type: 'module',
         remoteEntry: 'http://localhost:6301/remoteEntry.js',
-        exposedModule: './sige2Mfe',
+        exposedModule: './Module',
+      }).then(m => m.RemoteEntryModule)
+  },
+  {
+    path: 'moduloRemotoProtegido',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      loadRemoteModule({
+        type: 'module',
+        remoteEntry: 'http://localhost:6301/remoteEntry.js',
+        exposedModule: './Module',
       }).then(m => m.RemoteEntryModule)
   },
 ];
