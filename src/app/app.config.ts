@@ -7,6 +7,7 @@ import { routes } from './app.routes';
 import { KeycloakBearerInterceptor, KeycloakService } from 'keycloak-angular';
 import { MockKeycloakService } from './mocks/keycloack.service.mock';
 import { environment } from './enviroment/environment';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 // CONFIGURACION PARA EL HOST CON EL SERVICIO MOCKEADO
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -110,6 +111,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(),
+    provideAnimations(),
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,

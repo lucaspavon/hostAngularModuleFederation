@@ -44,3 +44,5 @@ Thumbs.db
 # Otros
 /enviroment
 .env
+.npmrc
+environment.ts
